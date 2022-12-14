@@ -1,0 +1,140 @@
+section{
+    display: flex;
+    align-items: center;  
+    div#form_container{
+        width: 50%;
+        form#form_sign_in{
+            background: #ffffff;
+            border-radius: 6px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+            color: #152C61; 
+            display: flex;
+            flex-wrap: wrap;
+            font: normal 300 16px/24px Poppins_light;
+            height: 100%; 
+            margin: 0px 204px 0px auto;   
+            padding: 32px 40px 40px 40px;
+            width: 450px;
+            h2{
+                color: #2C6BFF;
+                font: normal 600 22px/33px Poppins_semi_bold;
+                width: 100%;
+            }
+            h3{
+                color: #152C61;
+                font: normal 600 40px/60px Poppins_semi_bold;
+                margin-top: 40px;
+                width: 100%;
+            }
+            label{
+                margin-top: 22px;
+                width: 100%;
+            }
+            label:nth-child(1){
+                margin-top: 20px;
+            }
+            label:nth-child(6){
+                width: 50%;
+            }
+            a{
+                color: rgba(0, 0, 0, 0.5);
+                font: normal 300 14px/21px Poppins_light;
+                margin-top: 20px;
+                text-align: right;
+                text-decoration: none;
+                width: 50%;
+            }  
+            input{
+                background: rgba(44, 107, 255, 0.08);
+                border-radius: 4px;
+                border: none;
+                font: normal 400 14px/21px Poppins;
+                margin: 6px 0px;
+                outline: none;
+                padding: 14px 9px;
+                width: 100%;
+            }
+            input.input_error{
+                background: rgba(225, 85, 76, 0.08) !important;
+            }
+            button[type=submit]{
+                background-color: #2C6BFF;
+                border-radius: 4px;
+                border: none;
+                color: #ffffff;
+                font: normal 600 16px/24px Poppins_semi_bold;
+                margin: 35px auto 35px auto;
+                padding: 15px 45px; 
+            }
+            span{
+                color: rgba(0, 0, 0, 0.2);
+                font: normal 400 16px/22px Poppins; 
+                text-align: center; 
+                width: 100%;
+                a{
+                    color: #2c6bff;
+                    font: normal 400 16px/22px Poppins;
+                    text-decoration: none;
+                }
+            }
+            span.sign_in_error,
+            span.sign_up_error{
+                color: #E1554C;
+                display: none;
+                font: normal 300 14px/21px Poppins_light;
+                text-align: left; 
+            }
+        }
+    }
+    div#right_container{
+        align-items: center;
+        background-color: rgba(44, 107, 255, 0.51);
+        display: flex;
+        height: 100vh;
+        position: relative;
+        width: 50%;
+        img{
+            height: 456.62px;
+            left: -67px;
+            position: absolute;
+            width: 487.26px;
+        }
+    }
+} 
+
+@media (max-width: 480px) {
+    section{
+        div#form_container{
+            width: 100%;
+            form{
+                font-size: 14px;
+                margin: 30px;
+                max-width: 350px;
+                padding: 22px 30px 30px 30px;
+                h2{
+                    font-size: 19px; 
+                }
+                h3{
+                    font-size: 38px;
+                }
+                a,
+                input,
+                button[type=submit],
+                span{
+                    font-size: 14px;
+                    a{
+                        font-size: 14px;
+                    }
+                }
+                button[type=submit]{
+                    padding: 10px 40px; 
+                }
+            }
+        }
+        div#right_container{ 
+            display: none;
+            visibility: hidden;
+        }
+    }
+}
+
