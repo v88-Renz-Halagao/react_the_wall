@@ -9,7 +9,7 @@ import { regex } from './email_format_prototype_data';
 import "./signup.scss";
 
 /* Images */
-import Image_for_container from "../../../assets/images/Group_2018.png"
+import Image_for_container from "../../../assets/images/Group_2018.png";
 
 /** 
 * @class 
@@ -66,6 +66,9 @@ class Signup extends Component {
         }
         else{
             this.handleInputError("email", null);
+            if(error.email === null && error.password === null && error.confirm_password === null){
+                window.location.href = "/wall";
+            }
         }
 
         if (input.password !== input.confirm_password) {
@@ -73,16 +76,14 @@ class Signup extends Component {
         }
         else{
             this.handleInputError("confirm_password", null);
+            if(error.email === null && error.password === null && error.confirm_password === null){
+                window.location.href = "/wall";
+            }
         }
-
-        if(error.email === null && error.password === null && error.confirm_password === null){
-            console.log("Error");
-        }
-        
     }
 
     render() {
-        let {signup_error} = this.state;
+        let { signup_error } = this.state;
         return (
             <section>
                 <div id="form_container">

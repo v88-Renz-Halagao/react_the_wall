@@ -1,6 +1,7 @@
 /* React */
 import React, { Component } from "react";
 import  {Link} from "react-router-dom";
+import  {Navigate} from "react-router-dom";
 
 /* Prototype Data */
 import { loginData } from './login_prototype_data';
@@ -49,12 +50,13 @@ class Login extends Component {
             this.setState({ login_error: true});  
         }
         else{
-            console.log("Login Success");
+            console.log("OK");
+            window.location.href = "/wall";
         }
     }
 
     render() {
-        let {login_error} = this.state;
+        let { login_error } = this.state;
         return (
             <section>
                 <div id="form_container">

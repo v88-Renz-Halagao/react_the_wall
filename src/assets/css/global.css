@@ -19,7 +19,7 @@
   padding: 0px;
 }
 body {
-  background-color: #fbfbfb;
+  background-color: #fbfbfb !important; 
 }
 
 /* body .hide_element {
