@@ -20,9 +20,9 @@ class Login extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { 
-            login_data: loginData,
-            login_input: {
+        this.state = {
+            login_error: null,
+            login_input:{
                 email: null,
                 password: null
             }
@@ -30,45 +30,53 @@ class Login extends Component {
     }
 
     handleInputChnage = (input) => {
-        this.setState = ({
+        this.setState({
             login_input: {
-				...this.state.login_input,
-				[input.name]: input.value,
-			},
+              ...this.state.login_input,
+              [input.name]: input.value,
+            },
         })
     }
 
     handleOnLoginSubmit = (event) => {
         event.preventDefault();
-        this.props.handleUserLogin(this.state.login_input);
+        let user_login = this.props.handleUserLogin(this.state.login_input);
+        this.setState({ login_error: user_login}); 
     }
 
-    render() { 
+    render() {
+        let {login_error} = this.state;
         return (
             <section>
                 <div id="form_container">
-                    <form method="post" id="form_sign_in" onSubmit={this.handleOnLoginSubmit}>
+                    <form autoComplete="off" method="post" id="form_sign_in" onSubmit={this.handleOnLoginSubmit}>
                         <h2>The Wall</h2>
                         <h3>Login</h3>
-                        <label>Email</label>
+                        <label htmlFor="email">Email</label> 
                         <input 
                             type="text" 
                             id="email" 
                             name="email"
+                            className={`form-control ${ (login_error && login_error !== null) ? "input_error" : "" }`}
                             onChange={(event) => this.handleInputChnage(event.target)} 
                             required/>
-                        <span className="sign_in_error">Error Email</span> 
-                        <label>Password</label><a href="#" tabIndex="-1">Forgot Password</a>
+                        { (login_error) &&
+                            <span className="sign_in_error">Incorrect Email</span> 
+                        }
+                        <label htmlFor="password">Password</label><a href="#" tabIndex="-1">Forgot Password</a>
                         <input 
                             type="password" 
                             id="password" 
                             name="password"
+                            className={`form-control ${ (login_error && login_error !== null) ? "input_error" : "" }`}
                             onChange={(event) => this.handleInputChnage(event.target)}
                             required/>
-                        <span className="sign_in_error">Error Password</span> 
+                        { (login_error) &&
+                            <span className="sign_in_error">Incorrect Password</span> 
+                        }
                         <button type="submit">SIGN IN</button>
                         <span>I don’t have an account ? <a href="signup" id="sign_up_link">Sign up</a></span>
-                    </form>
+                    </form> 
                 </div>
                 <div id="right_container">
                     <img src={Image_for_container} alt="A man holding a form"/> 

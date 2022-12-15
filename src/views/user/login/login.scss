@@ -30,11 +30,11 @@ section{
                 margin-top: 22px;
                 width: 100%;
             }
-            label:nth-child(1){
-                margin-top: 20px;
+            label[for=email]{
+                margin-top: 20px; 
             }
-            label:nth-child(6){
-                width: 50%;
+            label[for=password]{
+                width: 50%; 
             }
             a{
                 color: rgba(0, 0, 0, 0.5);
@@ -53,7 +53,7 @@ section{
                 outline: none;
                 padding: 14px 9px;
                 width: 100%;
-            }
+            } 
             input.input_error{
                 background: rgba(225, 85, 76, 0.08) !important;
             }
@@ -77,10 +77,8 @@ section{
                     text-decoration: none;
                 }
             }
-            span.sign_in_error,
-            span.sign_up_error{
+            span.sign_in_error{
                 color: #E1554C;
-                display: none;
                 font: normal 300 14px/21px Poppins_light;
                 text-align: left; 
             }
