@@ -7,26 +7,11 @@ import Login from "../user/login/login";
 import Signup from "../user/signup/signup";
 
 class UserLayout extends Component {
-
     constructor(props) {
         super(props);
 
         this.state = {
-           login_data: {
-                email: "test1@gmail.com",
-                password: "test1@gmail.com"
-           }
-        }
-    }
-
-    handleUserLogin = (input) => {
-        console.log(input);
-        let login_data = this.state.login_data;
-        if (input.email === login_data.email && input.password === login_data.password) {
-            return false;  
-        }
-        else{
-            return true;
+           
         }
     }
 
@@ -35,7 +20,7 @@ class UserLayout extends Component {
             <React.Fragment>
                  <Router>
                     <Routes>
-                        <Route path="/" element={<Login handleUserLogin={this.handleUserLogin}/>} />
+                        <Route path="/" element={<Login/>} />
                         <Route path="/signup" element={<Signup/>} /> 
                     </Routes>
                 </Router>

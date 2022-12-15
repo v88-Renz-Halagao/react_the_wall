@@ -1,9 +1,11 @@
 /* React */
 import React, { Component } from "react";
+import  {Link} from "react-router-dom";
 
+/* Prototype Data */
 import { loginData } from './login_prototype_data';
 
-/* CSS */
+/* CSS */ 
 import "./login.scss";
 
 /* Images */
@@ -25,11 +27,12 @@ class Login extends Component {
             login_input:{
                 email: null,
                 password: null
-            }
+            },
+            login_data: loginData
         }
     }
 
-    handleInputChnage = (input) => {
+    handleInputChange = (input) => {
         this.setState({
             login_input: {
               ...this.state.login_input,
@@ -40,8 +43,14 @@ class Login extends Component {
 
     handleOnLoginSubmit = (event) => {
         event.preventDefault();
-        let user_login = this.props.handleUserLogin(this.state.login_input);
-        this.setState({ login_error: user_login}); 
+        let input = this.state.login_input;
+        let login_data = this.state.login_data;
+        if (input.email !== login_data.email && input.password !== login_data.password) {
+            this.setState({ login_error: true});  
+        }
+        else{
+            console.log("Login Success");
+        }
     }
 
     render() {
@@ -54,11 +63,11 @@ class Login extends Component {
                         <h3>Login</h3>
                         <label htmlFor="email">Email</label> 
                         <input 
-                            type="text" 
+                            type="email" 
                             id="email" 
                             name="email"
                             className={`form-control ${ (login_error && login_error !== null) ? "input_error" : "" }`}
-                            onChange={(event) => this.handleInputChnage(event.target)} 
+                            onChange={(event) => this.handleInputChange(event.target)} 
                             required/>
                         { (login_error) &&
                             <span className="sign_in_error">Incorrect Email</span> 
@@ -69,13 +78,13 @@ class Login extends Component {
                             id="password" 
                             name="password"
                             className={`form-control ${ (login_error && login_error !== null) ? "input_error" : "" }`}
-                            onChange={(event) => this.handleInputChnage(event.target)}
+                            onChange={(event) => this.handleInputChange(event.target)}
                             required/>
                         { (login_error) &&
                             <span className="sign_in_error">Incorrect Password</span> 
                         }
                         <button type="submit">SIGN IN</button>
-                        <span>I don’t have an account ? <a href="signup" id="sign_up_link">Sign up</a></span>
+                        <span>I don’t have an account ? <Link to="/signup" id="sign_up_link">Sign up</Link></span>
                     </form> 
                 </div>
                 <div id="right_container">
