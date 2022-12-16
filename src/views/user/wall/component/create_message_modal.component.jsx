@@ -12,18 +12,32 @@ class CreateMessageModal extends Component {
         super(props);
 
         this.state = {
-            message_textarea: "" 
+            message_content: {
+                id: null,
+                message: "",
+                comments: []
+            }
         }
     }
 
     handleTextareaChange = (textarea) => {
-        this.setState({ message_textarea: textarea.value})
+        this.setState({
+			message_content: {
+				...this.state.message_content,
+				id: this.props.message_id + 1,
+                message: textarea.value
+			},
+		})
+    } 
+
+    handleOnFormSubmit = (event) => {
+        event.preventDefault();
+        this.props.handleAddContent(this.state.message_content);
     }
 
     render() { 
         let {is_show, closeModal} = this.props;
-        let {message_textarea} = this.state;
-        console.log("🚀 ~ file: create_message_modal.component.jsx:26 ~ CreateMessageModal ~ render ~ message_textarea", message_textarea)
+        let {message_content} = this.state;
         return (
             <Modal 
                 show={is_show} 
@@ -34,7 +48,7 @@ class CreateMessageModal extends Component {
             >
                 <Modal.Header className="border-bottom-0" closeButton>
                 </Modal.Header>
-                <form method="post" id="create_message_form">
+                <form method="post" id="create_message_form" onSubmit={this.handleOnFormSubmit}>
                 <h5>Create a Message</h5>
                 <Modal.Body>
                     <textarea 
@@ -43,9 +57,9 @@ class CreateMessageModal extends Component {
                         onChange={(event) => this.handleTextareaChange(event.target)}></textarea>
                 </Modal.Body>
                 <Modal.Footer className="border-top-0">
-                    <Button type="button" id="cancel_post_message_btn"> Cancel</Button>
+                    <Button onClick={() => closeModal()} type="button" id="cancel_post_message_btn"> Cancel</Button>
                     <Button
-                        className={`${ (message_textarea === "") ? "disabled disable_button" : "" }`} 
+                        className={`${ (message_content.message === "") ? "disabled disable_button" : "" }`} 
                         type="submit">Post message</Button> 
                 </Modal.Footer>
                 </form>
