@@ -6,7 +6,7 @@ import "./message_content.component.scss";
 
 class Content extends Component {
     render() { 
-        let {content} = this.props;
+        let {content, showDeleteMessageModal} = this.props;
         return (
             <li className="message_item" id={content.id}>
                 <p className="content content_message">{content.message}</p>
@@ -24,8 +24,8 @@ class Content extends Component {
                             Edit
                         </button>
                     </li>
-                    <li>
-                        <button className="delete_button" type="button">
+                    <li> 
+                        <button onClick={(event) => showDeleteMessageModal(event.target)} className="delete_button" id={content.id} type="button">
                             <span className="action_icon"></span> 
                             Delete
                         </button>

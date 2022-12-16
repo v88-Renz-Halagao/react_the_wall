@@ -1,6 +1,7 @@
 /* React */
 import React, { Component } from "react";
 
+/* Plugins */
 import Button from      "react-bootstrap/Button";
 import Modal from       "react-bootstrap/Modal";
 
@@ -36,12 +37,12 @@ class CreateMessageModal extends Component {
     }
 
     render() { 
-        let {is_show, closeModal} = this.props;
-        let {message_content} = this.state;
+        let {is_show, closeCreateMessageModal} = this.props;
+        let {message_content} = this.state; 
         return (
             <Modal 
                 show={is_show} 
-                onHide={closeModal}
+                onHide={closeCreateMessageModal}
                 size="lg" 
                 id="create_post_modal"
                 centered
@@ -57,7 +58,7 @@ class CreateMessageModal extends Component {
                         onChange={(event) => this.handleTextareaChange(event.target)}></textarea>
                 </Modal.Body>
                 <Modal.Footer className="border-top-0">
-                    <Button onClick={() => closeModal()} type="button" id="cancel_post_message_btn"> Cancel</Button>
+                    <Button onClick={closeCreateMessageModal} type="button" id="cancel_post_message_btn"> Cancel</Button>
                     <Button
                         className={`${ (message_content.message === "") ? "disabled disable_button" : "" }`} 
                         type="submit">Post message</Button> 
